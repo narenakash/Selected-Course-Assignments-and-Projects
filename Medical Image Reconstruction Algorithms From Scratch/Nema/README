@@ -1,0 +1,28 @@
+---------------------------------------------------
+Nema sinogram
+---------------------------------------------------
+
+nema.emission.sinogram : emission sinogram
+nema.ctac.sinogram     : attenuation correction sinogram
+
+Parameters of interest
+ numAngles: 280
+ numRadialBins: 293
+ radialBinSpacing: 2.3969 mm
+
+---------------------------------------------------
+% Matlab script for reconstruction
+ 
+ f_e=fopen('nema.emission.sinogram');
+ f_c=fopen('nema.ctac.sinogram');
+ 
+ e=fread(f_e,[293 280],'float','l');
+ c=fread(f_c,[293 280],'float','l');
+ Sino = e./c;
+ 
+ figure,imshow(e,[]) 
+ figure,imshow(c,[])
+ figure,imshow(Sino,[])
+
+---------------------------------------------------
+%% Please use 'Sino' for all the processing
